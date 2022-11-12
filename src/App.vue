@@ -41,6 +41,10 @@ a {
 i,em {
   font-style: normal;
 }
+button, img, input {
+    border: none;
+    outline: none;
+}
 body {
   font-family: PingFang SC,Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,STHeiti,\\534E\6587\7EC6\9ED1,sans-serif;
   color: #666;

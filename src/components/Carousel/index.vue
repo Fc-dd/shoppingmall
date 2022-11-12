@@ -184,6 +184,7 @@ export default {
 <style lang="less" scoped>
   .my_swiper {
     position: relative;
+    border-radius: 10px;
     overflow: hidden;
     .container {
       position: absolute;
