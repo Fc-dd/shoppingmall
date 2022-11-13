@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Headers />
-    <Topwrapper />
+    <Headers/>
+    <Topwrapper/>
     <div class="home main">
       <!-- 轮播图 -->
       <div class="banner">
@@ -10,7 +10,6 @@
           :slideh="500"
           :delay="3000"
           :imgList="imgList"
-          :btn="true"
         />
       </div>
       <!-- 活动面板 -->
@@ -101,7 +100,11 @@
         </div>
       </div>
       <!-- 精选 -->
-      <GoodsTemplate />
+      <div v-for="(item,index) in componentsList" :key="index">
+        <GoodsTemplate :title="item"/>
+      </div>
+      <!-- 底部 -->
+      <Footer/>
     </div>
   </div>
 </template>
@@ -111,9 +114,10 @@ import Headers from '@/components/Headers'
 import Topwrapper from '@/components/Topwrapper'
 import Carousel from '@/components/Carousel'
 import GoodsTemplate from '@/components/GoodsTemplate'
+import Footer from '@/components/Footer'
 
 export default {
-  components: { Headers, Topwrapper, Carousel, GoodsTemplate },
+  components: { Headers, Topwrapper, Carousel, GoodsTemplate,Footer },
   data() {
     return {
       imgList: [
@@ -130,12 +134,15 @@ export default {
         {
           id: 2,
           imgUrl:
-            'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e89200db5385ff3d99fb45cc342fcd14.jpg?thumb=1&w=1471&h=552&f=webp&q=90',
+            'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/07bf453b14af984329f9778db7a35d70.jpg?thumb=1&w=1471&h=552&f=webp&q=90',
         },
       ],
+      componentsList: ['坚果 R2 及配件','Smartisan TNT','官方精选配件','足迹系列保护套']
     }
   },
-  methods: {},
+  methods: {
+
+  },
 }
 </script>
 

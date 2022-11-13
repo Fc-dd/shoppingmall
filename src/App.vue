@@ -50,6 +50,17 @@ body {
   color: #666;
   font-size: 14px;
 }
+/* 清除浮动 */
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+.clearfix {
+    *zoom: 1
+}
 .main {
   width: 100%;
   min-height: calc(100vh - 454px);

@@ -261,13 +261,14 @@ export default {
     height: 13px;
     margin-left: 10px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid #fff;
   }
   .circle_list .circle_active {
     width: 20px;
     height: 20px;
-    background-color: #e3dfdf;
-    border: 4px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 4px solid #fff;
   }
   .dn {
     display: none;

@@ -2,7 +2,7 @@
   <div>
     <div class="mt30 w">
       <div class="title">
-        <h2>官方精选</h2>
+        <h2>{{title}}</h2>
       </div>
       <div class="bd">
         <div class="imgbanner">
@@ -151,6 +151,12 @@
 <script>
 export default {
   name: 'GoodsTemplate',
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {}
   },
