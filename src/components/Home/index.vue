@@ -10,6 +10,7 @@
           :slideh="500"
           :delay="3000"
           :imgList="imgList"
+          :btn="true"
         />
       </div>
       <!-- 活动面板 -->
@@ -20,24 +21,28 @@
               src="https://resource.smartisan.com/resource/6/610400xinpinpeijian.jpg"
               alt=""
             />
+            <a href="#"></a>
           </li>
           <li>
             <img
               src="https://resource.smartisan.com/resource/6/610400yijiuhuanxin.jpg"
               alt=""
             />
+            <a href="#"></a>
           </li>
           <li>
             <img
               src="https://resource.smartisan.com/resource/4/489673079577637073.png"
               alt=""
             />
+            <a href="#"></a>
           </li>
           <li>
             <img
               src="https://resource.smartisan.com/resource/fe6ab43348a43152b4001b4454d206ac.jpg"
               alt=""
             />
+            <a href="#"></a>
           </li>
         </ul>
       </div>
@@ -112,9 +117,21 @@ export default {
   data() {
     return {
       imgList: [
-        { id: 0, imgUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cc6eac238be23a094c1a6395401146f0.jpg?w=2452&h=920' },
-        { id: 1, imgUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e89200db5385ff3d99fb45cc342fcd14.jpg?thumb=1&w=1471&h=552&f=webp&q=90' },
-        { id: 2, imgUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e89200db5385ff3d99fb45cc342fcd14.jpg?thumb=1&w=1471&h=552&f=webp&q=90' },
+        {
+          id: 0,
+          imgUrl:
+            'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cc6eac238be23a094c1a6395401146f0.jpg?w=2452&h=920',
+        },
+        {
+          id: 1,
+          imgUrl:
+            'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e89200db5385ff3d99fb45cc342fcd14.jpg?thumb=1&w=1471&h=552&f=webp&q=90',
+        },
+        {
+          id: 2,
+          imgUrl:
+            'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e89200db5385ff3d99fb45cc342fcd14.jpg?thumb=1&w=1471&h=552&f=webp&q=90',
+        },
       ],
     }
   },
@@ -161,20 +178,25 @@ export default {
       cursor: pointer;
       z-index: 2222;
       img {
-        position: relative;
         display: block;
         width: 100%;
         height: 100%;
-        z-index: 1;
+      }
+      a {
+        position: absolute;
+        display: block;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
       }
     }
     ul li:first-child {
       border-left: 1px solid rgba(0, 0, 0, 0.14);
     }
-    ul li:hover img {
-      box-shadow: inset 0 0 38px rgb(0 0 0 / 8%);
+    ul li a:hover {
+      box-shadow: inset 0 0 32px rgb(0 0 0 / 8%);
       transition: all 0.15s ease;
-      // background-color: red;
     }
   }
   // 热门
