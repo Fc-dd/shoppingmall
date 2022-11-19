@@ -124,7 +124,7 @@ export default {
       }
     }
     .footer_info {
-      padding: 30px 0 60px;
+      padding-top: 30px;
       color: #434d55;
       font-size: 12px;
       li {

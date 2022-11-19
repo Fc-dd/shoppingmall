@@ -1,23 +1,19 @@
 <template>
   <div>
     <div class="main">
-      <Home/>
-      <button @click="get_fruits_Info">获取所有水果信息</button>
+      <router-view></router-view>
+      <!-- <button @click="get_fruits_Info">获取所有水果信息</button> -->
     </div>
   </div>
 </template>
 
 <script>
-
-import Home from '@/components/Home'
-
 export default {
   data () {
     return {
 
     }
   },
-  components:{ Home },
   methods: {
     get_fruits_Info () {
       this.$store.dispatch('user/getFruitsList')

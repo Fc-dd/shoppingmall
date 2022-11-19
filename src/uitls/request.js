@@ -1,4 +1,5 @@
 import axios from "axios";
+import { get_token } from "./token";
 
 // 创建实例
 const service = axios.create({
@@ -10,6 +11,7 @@ const service = axios.create({
 service.interceptors.request.use( 
   config => {
     // 在发送请求之前做什么
+    get_token() && (config.headers = get_token())
     return config;
   },
   error => {
