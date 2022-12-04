@@ -7,131 +7,21 @@
       <div class="bd">
         <div class="imgbanner">
           <img
-            src="https://resource.smartisan.com/resource/1/1220858shoujilouceng.jpg"
+            :src="bd.bigImgUrl"
             alt=""
           />
         </div>
-        <div class="goodsItem">
+        <div class="goodsItem" v-for="item in bd.itemList" :key="item.spuId">
           <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
+            :src="item.imgUrl"
             alt=""
           />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
+          <h3>{{ item.title }}</h3>
+          <h6>{{ item.introduce }}</h6>
           <div class="price">
             <div>
               <span>￥</span>
-              4999.0
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="goodsItem">
-          <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-            alt=""
-          />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              4999.0
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="goodsItem">
-          <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-            alt=""
-          />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              4999.0
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="goodsItem">
-          <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-            alt=""
-          />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              4999.0
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="goodsItem">
-          <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-            alt=""
-          />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              4999.0
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="goodsItem">
-          <img
-            src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-            alt=""
-          />
-          <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-          <h6>超强透光率、耐刮花、防指纹</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              4999.0
+              {{ item.price }}
             </div>
             <div class="pa">
               <button class="look" style="display: inline-block;">
@@ -154,6 +44,10 @@ export default {
   props: {
     title: {
       type: String,
+      required: true
+    },
+    bd: {
+      type: Object,
       required: true
     }
   },

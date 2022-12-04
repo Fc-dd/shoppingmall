@@ -59,7 +59,7 @@ body {
 }
 .main {
   width: 100%;
-  min-height: calc(100vh - 454px);
+  /* min-height: calc(100vh - 454px); */
   overflow: hidden;
   background-color: #ededed;
 }

@@ -15,6 +15,14 @@ const routes = [
     path:'/login',
     component: () => import('@/pages/Login'),
   },
+  {
+    path:'/goods',
+    component: () => import('@/pages/Goods'),
+  },
+  {
+    path:'/detail',
+    component: () => import('@/pages/Detail'),
+  },
 ]
 
 const router = new VueRouter({

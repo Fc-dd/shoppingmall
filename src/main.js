@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import 'swiper/swiper.css'
+
+// 注册全局组件
+import globalComponents from '@/uitls/globalComponents'
+Vue.use(globalComponents)
 
 Vue.config.productionTip = false
 

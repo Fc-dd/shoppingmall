@@ -52,39 +52,17 @@
             <h2>热门商品</h2>
           </div>
           <div class="bd">
-            <div class="goodsItem">
+            <div class="goodsItem" v-for="item in hotGoodsList" :key="item.spuId">
               <img
-                src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
+                :src="item.imgUrl"
                 alt=""
               />
-              <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-              <h6>超强透光率、耐刮花、防指纹</h6>
+              <h3>{{ item.title }}</h3>
+              <h6>{{ item.introduce }}</h6>
               <div class="price">
                 <div>
                   <span>￥</span>
-                  4999.0
-                </div>
-                <div class="pa">
-                  <button class="look" style="display: inline-block;">
-                    查看详情
-                  </button>
-                  <button class="add" style="display: inline-block;">
-                    添加购物车
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="goodsItem">
-              <img
-                src="https://resource.smartisan.com/resource/4d9e7683b590cf4a6996d3b13136bcf8.png?x-oss-process=image/resize,w_324/format,webp"
-                alt=""
-              />
-              <h3>坚果 3 前屏钢化玻璃保护膜</h3>
-              <h6>超强透光率、耐刮花、防指纹</h6>
-              <div class="price">
-                <div>
-                  <span>￥</span>
-                  4999.0
+                  {{ item.price }}
                 </div>
                 <div class="pa">
                   <button class="look" style="display: inline-block;">
@@ -100,8 +78,8 @@
         </div>
       </div>
       <!-- 精选 -->
-      <div v-for="(item,index) in componentsList" :key="index">
-        <GoodsTemplate :title="item"/>
+      <div v-for="item in choicenessList" :key="item.id">
+        <GoodsTemplate :title="item.title" :bd="item.bd"/>
       </div>
       <!-- 底部 -->
       <Footer/>
@@ -110,16 +88,14 @@
 </template>
 
 <script>
-import Headers from '@/components/Headers'
-import Topwrapper from '@/pages/Topwrapper'
 import Carousel from '@/components/Carousel'
 import GoodsTemplate from '@/pages/GoodsTemplate'
-import Footer from '@/components/Footer'
-import { get_token } from '@/uitls/token'
+// import { get_token } from '@/uitls/token'
+import { choicenessList, hotGoods } from '@/api/goods'
 
 export default {
   name:'Home',
-  components: { Headers, Topwrapper, Carousel, GoodsTemplate,Footer },
+  components: { Carousel, GoodsTemplate },
   data() {
     return {
       imgList: [
@@ -139,11 +115,27 @@ export default {
             'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/07bf453b14af984329f9778db7a35d70.jpg?thumb=1&w=1471&h=552&f=webp&q=90',
         },
       ],
-      componentsList: ['坚果 R2 及配件','Smartisan TNT','官方精选配件','足迹系列保护套']
+      choicenessList: [],
+      hotGoodsList: []
     }
   },
+  created () {
+    this.getChoicenessList(),
+    this.getHotGooods()
+  },
   methods: {
-    
+    async getChoicenessList () {
+      let result = await choicenessList()
+      if (result.status === 200) {
+        this.choicenessList = result.data
+      }
+    },
+     async getHotGooods () {
+      let result = await hotGoods()
+      if (result.status === 200) {
+        this.hotGoodsList = result.data
+      }
+    }
   },
 }
 </script>
