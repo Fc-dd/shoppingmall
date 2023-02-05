@@ -1,5 +1,5 @@
 <template>
-  <div class="goodsItem">
+  <div class="goodsItem" @click="goDetail(goods.spuId)">
     <img
       :src="goods.imgUrl"
       alt=""
@@ -15,7 +15,7 @@
         <button class="look" style="display: inline-block;">
           查看详情
         </button>
-        <button class="add" style="display: inline-block;">
+        <button class="add" style="display: inline-block;" @click.stop="addCar">
           添加购物车
         </button>
       </div>
@@ -26,7 +26,16 @@
 <script>
 export default {
   name: 'ItemCard',
-  props: ['goods']
+  props: ['goods'],
+  methods: {
+    goDetail (spuId) {
+      console.log(spuId)
+      this.$router.push('detail')
+    },
+    addCar () {
+      sc
+    }
+  }
 }
 </script>
 

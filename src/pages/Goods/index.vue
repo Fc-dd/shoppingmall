@@ -4,14 +4,14 @@
     <Topwrapper />
     <div class="goods">
       <div class="nav w">
-        <a href="javascript:;">综合排序</a>
-        <a href="javascript:;">价格从低到高</a>
-        <a href="javascript:;">价格从高到低</a>
+        <a href="javascript:;" :class="{'active': sort === ''}" @click="sort = ''">综合排序</a>
+        <a href="javascript:;" :class="{'active': sort === 'asc'}" @click="sort = 'asc'">价格从低到高</a>
+        <a href="javascript:;" :class="{'active': sort === 'desc'}" @click="sort = 'desc'">价格从高到低</a>
         <div class="price_interval">
-          <input type="text" placeholder="最低价格" />
+          <input type="text" placeholder="最低价格" v-model.number.lazy="minPrice"/>
           <span>-</span>
-          <input type="text" placeholder="最高价格" />
-          <input class="btn" type="button" value="确定" />
+          <input type="text" placeholder="最高价格" v-model.number.lazy="maxPrice" />
+          <input class="btn" type="button" value="确定" @click="flag = true" />
         </div>
       </div>
       <div class="goods_box w">
@@ -22,8 +22,8 @@
     </div>
     <Pagination 
       :total="total"
-      :pageSize="pageSize"
-      :currentPage="currentPage"
+      :pageSize="limit"
+      :currentPage="page"
       :continuous="continuous"
       @pageChange="pageChange"
     />
@@ -39,26 +39,62 @@ export default {
   components: { ItemCard, Pagination },
   data () {
     return {
-      total: 99,
-      currentPage: 8,
-      pageSize: 9,
-      continuous: 5
+      // total: 99,
+      // currentPage: 8,
+      // pageSize: 9,
+      continuous: 5,
+      page: 1,
+      limit: 12,
+      sort: '',
+      minPrice: 0,
+      maxPrice: 0,
+      flag: false
     }
   },
   created () {
+    this.getTotal()
     this.getGoodsList()
   },
   methods: {
     pageChange (data) {
-      typeof data == 'object' ? this.currentPage = data.page : this.currentPage += data
+      typeof data == 'object' ? this.page = data.page : this.page += data
+      this.getGoodsList()
     },
     getGoodsList () {
-      this.$store.dispatch('goods/getGoodsList')
+      let { page, limit } = this
+      this.$store.dispatch('goods/getGoodsList',{page, limit})
+    },
+    getTotal() {
+      this.$store.dispatch('goods/getTotal')
     }
   },
   computed: {
     goodsList() {
-      return this.$store.state.goods.goodsList
+      let { goodsList } = JSON.parse(JSON.stringify(this.$store.state.goods))
+      let { sort } = this
+      let newGoodsList
+
+      // 点击排序
+      if (sort === 'asc') {
+        newGoodsList = goodsList.sort((a, b) => a.price - b.price)
+      } else if (sort === 'desc') {
+        newGoodsList = goodsList.sort((a, b) => b.price - a.price)
+      } else {
+        newGoodsList = this.$store.state.goods.goodsList
+      }
+
+      // 输入范围排序
+      let { minPrice, maxPrice } = this
+      if (this.flag) {
+        if (maxPrice > 0 && maxPrice > minPrice) {
+        newGoodsList = goodsList.filter(item => minPrice <= Number(item.price) && Number(item.price) <= maxPrice)
+        // this.flag = false
+      }
+      }
+      return newGoodsList
+    },
+    total() {
+      return this.$store.state.goods.total.length
     }
   }
 }

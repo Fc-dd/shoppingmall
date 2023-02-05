@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" ref="ftr">
     <div class="w">
       <div class="footer_menu">
         <ul class="clearfix">
@@ -73,7 +73,16 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  mounted () {
+    this.postTop()
+  },
+  methods: {
+    postTop() {
+      let ftrDom = this.$refs.ftr
+      this.$emit('getTop', ftrDom)
+    }
+  },
 }
 </script>
 
@@ -81,7 +90,7 @@ export default {
   .footer {
     width: 100%;
     margin-top: 30px;
-    background-color: #fff;
+    background-color: #fafafa;
     .w {
       padding: 60px 0;
       .footer_menu {

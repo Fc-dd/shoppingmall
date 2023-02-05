@@ -11,28 +11,9 @@
             alt=""
           />
         </div>
-        <div class="goodsItem" v-for="item in bd.itemList" :key="item.spuId">
-          <img
-            :src="item.imgUrl"
-            alt=""
-          />
-          <h3>{{ item.title }}</h3>
-          <h6>{{ item.introduce }}</h6>
-          <div class="price">
-            <div>
-              <span>￥</span>
-              {{ item.price }}
-            </div>
-            <div class="pa">
-              <button class="look" style="display: inline-block;">
-                查看详情
-              </button>
-              <button class="add" style="display: inline-block;">
-                添加购物车
-              </button>
-            </div>
-          </div>
-        </div>
+        <template v-for="item in bd.itemList" >
+          <ItemCard :goods="item" :key="item.spuId"/>
+        </template>
       </div>
     </div>
   </div>

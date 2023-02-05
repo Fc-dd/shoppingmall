@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="nav_wrapper" :class="{'topfixed': topfixed }" ref="topfixed">
+    <div class="nav_wrapper" :class="{ topfixed: topfixed }" ref="topfixed">
       <div class="w">
         <ul>
           <li>
@@ -33,7 +33,7 @@
         </ul>
       </div>
     </div>
-    <div class="box" ref="box" :class="{ 'db': topfixed }"></div>
+    <div class="box" ref="box" :class="{ db: topfixed }"></div>
   </div>
 </template>
 
@@ -44,26 +44,36 @@ export default {
     return {
       topfixed: false,
       top: null,
+      navDom: null,
     }
   },
   methods: {
     listenerFn() {
+      this.$bus.on('navDom', (dom) => {
+        this.navDom = dom
+      })
       document.addEventListener('scroll', this.handlerScroll, true)
     },
     handlerScroll() {
-      if(!this.$refs.topfixed) return
-      if (window.pageYOffset >= this.$refs.topfixed.offsetTop) this.topfixed = true
-      if (window.pageYOffset <= this.top) this.topfixed = false
+      if (!this.$refs.topfixed) return
+      if (window.pageYOffset >= this.$refs.topfixed.offsetTop){
+        this.topfixed = true
+        this.navDom.classList.add('fixed')
+      }
+      if (window.pageYOffset <= this.top){
+        this.topfixed = false
+        this.navDom.classList.remove('fixed')
+      } 
     },
   },
-  created() {
-  },
+  created() {},
   mounted() {
     this.top = this.$refs.topfixed.offsetTop
     this.listenerFn()
   },
   destroyed() {
     document.removeEventListener('scroll', this.listenerFn)
+    this.$bus.off('navDom')
   },
 }
 </script>
@@ -73,7 +83,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 100;
 }
 .nav_wrapper {
   display: flex;
@@ -121,11 +131,11 @@ export default {
   }
 }
 .box {
-    display: none;
-    width: 100%;
-    height: 90px;
-  }
-  .db {
-    display: block;
-  }
+  display: none;
+  width: 100%;
+  height: 90px;
+}
+.db {
+  display: block;
+}
 </style>

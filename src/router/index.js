@@ -23,10 +23,20 @@ const routes = [
     path:'/detail',
     component: () => import('@/pages/Detail'),
   },
+  {
+    path:'/Car',
+    component: () => import('@/pages/Car')
+  }
 ]
-
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 export default router

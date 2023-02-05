@@ -8,7 +8,8 @@
         <Carousel
           :slidew="1220"
           :slideh="500"
-          :delay="3000"
+          :delay="4000
+          "
           :imgList="imgList"
         />
       </div>
@@ -52,28 +53,9 @@
             <h2>热门商品</h2>
           </div>
           <div class="bd">
-            <div class="goodsItem" v-for="item in hotGoodsList" :key="item.spuId">
-              <img
-                :src="item.imgUrl"
-                alt=""
-              />
-              <h3>{{ item.title }}</h3>
-              <h6>{{ item.introduce }}</h6>
-              <div class="price">
-                <div>
-                  <span>￥</span>
-                  {{ item.price }}
-                </div>
-                <div class="pa">
-                  <button class="look" style="display: inline-block;">
-                    查看详情
-                  </button>
-                  <button class="add" style="display: inline-block;">
-                    添加购物车
-                  </button>
-                </div>
-              </div>
-            </div>
+            <template v-for="item in hotGoodsList" >
+             <ItemCard :goods="item" :key="item.spuId"/>
+            </template>
           </div>
         </div>
       </div>

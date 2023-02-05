@@ -14,11 +14,11 @@
               <input type="text" placeholder="请输入商品信息" />
               <i></i>
             </div>
-            <router-link to="/home">全部商品</router-link>
+            <router-link to="/goods">全部商品</router-link>
             <router-link to="/home">捐赠</router-link>
           </div>
           <!-- 用户 -->
-          <div class="nav_aside">
+          <div class="nav_aside" ref="nav">
             <div class="user" @mouseleave="userLeave">
               <a
                 class="ico"
@@ -86,9 +86,9 @@ export default {
     }
   },
   methods: {
-    getUserInfo () {
+    getUserInfo() {
       let token = get_token()
-      this.$store.dispatch('user/userInfo',token)
+      this.$store.dispatch('user/userInfo', token)
     },
     // 点击用户
     userCilck() {
@@ -116,16 +116,19 @@ export default {
     },
   },
   computed: {
-    nickname () {
+    nickname() {
       return this.$store.state.user.userInfo.nickname
     },
-    avatar () {
+    avatar() {
       return this.$store.state.user.userInfo.avatar
-    }
+    },
   },
-  created () {
+  created() {
     this.getUserInfo()
-  }
+  },
+  mounted() {
+    this.$bus.emit('navDom', [this.$refs.nav], true)
+  },
 }
 </script>
 
@@ -182,6 +185,9 @@ header {
       border-radius: 4px;
       outline: none;
     }
+    .search input::-webkit-input-placeholder {
+      color: rgb(188, 188, 188);
+    }
     .search i {
       position: absolute;
       top: 0;
@@ -208,10 +214,18 @@ header {
       display: flex;
       color: #fff;
       // background-color: pink;
+      border-left: 1px solid rgba(204, 204, 204, 0.5);
     }
-    .nav_aside::before {
-      content: '|';
-      color: rgba(204, 204, 204, 0.5);
+    .fixed {
+      width: 262px;
+      position: fixed;
+      left: 50%;
+      margin-left: 451px;
+      margin-top: 0;
+      z-index: 9999999;
+      top: -22px;
+      transform: translate3d(0, 59px, 0);
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     .user {
       width: 36px;

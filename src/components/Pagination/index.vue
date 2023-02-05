@@ -6,18 +6,18 @@
           <button @click="btnPage(-1)" :disabled="currentPage <= 1">上一页</button>
         </li>
         <li v-if="startOrend.start > 1">
-          <a href="javascript:;" @click="ckPage(1)">1</a>
+          <a href="javascript:;" :class="{ active : currentPage === 1 }" @click="ckPage(1)">1</a>
         </li>
         <li v-if="startOrend.start >= 3">
           <a href="javascript:;">.....</a>
         </li>
         <span v-for="(page, index) in startOrend.end" :key="index">
           <li v-if="page >= startOrend.start">
-            <a href="javascript:;" @click="ckPage(page)">{{ page }}</a>
+            <a href="javascript:;" :class="{ active : currentPage === page }" @click="ckPage(page)">{{ page }}</a>
           </li>
         </span>
         <li v-if="startOrend.end < totalPage - 1">
-          <a href="javascript:;">.......</a>
+          <a href="javascript:;">......</a>
         </li>
         <li v-if="startOrend.end < totalPage">
           <a href="javascript:;" @click="ckPage(totalPage)">{{ totalPage }}</a>
@@ -32,12 +32,12 @@
           <i>{{totalPage}}</i>
           页
         </span>
-        <span>
+        <!-- <span>
           到
           <input type="text" v-model.number="skip_page" />
           页
         </span>
-        <button @click="skip_btn">确定</button>
+        <button @click="skip_btn">确定</button> -->
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
   props: {
     pageSize: { //每页展示多少条数据
       type: Number,
-      default: 8
+      default: 12
     },
     currentPage: { //当前页
       type: Number,
@@ -116,7 +116,8 @@ export default {
             start:　当前页
             end: 总页数　
         **/
-        start = currentPage
+        // start = currentPage
+        start = 1
         end = totalPage
       }
       return {
@@ -149,6 +150,10 @@ export default {
         color: #000;
         border: 1px solid #ccc;
         background-color: #f7f7f7;
+      }
+      .active {
+        color: #fff;
+        background-color: skyblue;
       }
       button {
         width: 90px;

@@ -5,80 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    body {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .box {
-      position: relative;
-      left: 0;
-      top: 0;
-      width: 200px;
-      height:  200px;
-      background-color: pink;
-      transform: translate(-50%, -50%);
-      z-index: 99;
-    }
-    .son {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 30px;
-      height: 30px;
-      background-color: blue;
-      z-index: 33333;
-    }
-
-    .son2 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: green;
-      z-index: 22;
-    }
-    .box2 {
-      display: none;
-      width: 50px;
-      height: 150px;
-      background-color: #000;
-      position: relative;
-      left: 500px;
-    }
-  </style>
 </head>
+<style>
+  div {
+    width: 300px;
+    height: 200px;
+    border: 5px solid #ccc;
+  }
+  .div1 {
+    position: relative;
+    margin: 50px auto;
+    background-color: skyblue;
+  }
+  .div2 {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    background-color: pink;
+  }
+</style>
 <body>
-  <button>
-    点击前进
-  </button>
-  <span>点击后退</span>
-  <div class="box">
-    <div class="son"></div>
-    <div class="son son2"></div>
+  <div class="div1">
+    <div class="div2"></div>
   </div>
-  <div class="box2"></div>
-  <script>
-    let div = document.querySelector('.box')
-    let btn = document.querySelector('button')
-    let span = document.querySelector('span')
-    let son = document.querySelector('.son')
-    div.addEventListener('mouseenter', function (e) {
-      e.stopPropagation()
-      console.log('father enter')
-    })
-    div.addEventListener('mouseleave', function () {
-      console.log('father leave')
-    })
-    // son.addEventListener('mouseenter', function (e) {
-    //   e.stopPropagation()
-    //   console.log('son enter')
-    // })
-    // son.addEventListener('mouseenter', function () {
-    //   console.log('son leave')
-    // })
-  </script>
 </body>
 </html>
