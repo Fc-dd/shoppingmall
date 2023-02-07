@@ -20,7 +20,7 @@ const routes = [
     component: () => import('@/pages/Goods'),
   },
   {
-    path:'/detail',
+    path:'/detail/:spuId',
     component: () => import('@/pages/Detail'),
   },
   {

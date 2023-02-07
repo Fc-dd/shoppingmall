@@ -55,7 +55,7 @@ export default {
       document.addEventListener('scroll', this.handlerScroll, true)
     },
     handlerScroll() {
-      if (!this.$refs.topfixed) return
+      if (!this.$refs.topfixed && this.navDom) return
       if (window.pageYOffset >= this.$refs.topfixed.offsetTop){
         this.topfixed = true
         this.navDom.classList.add('fixed')

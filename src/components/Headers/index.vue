@@ -127,7 +127,7 @@ export default {
     this.getUserInfo()
   },
   mounted() {
-    this.$bus.emit('navDom', [this.$refs.nav], true)
+    this.$bus.emit('navDom', this.$refs.nav)
   },
 }
 </script>
@@ -224,6 +224,7 @@ header {
       margin-top: 0;
       z-index: 9999999;
       top: -22px;
+      border-left: none;
       transform: translate3d(0, 59px, 0);
       transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     }

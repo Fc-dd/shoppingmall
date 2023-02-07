@@ -10,7 +10,7 @@ class Bus {
     // this.$on = this.on
   }
   on(name, fn) {
-    // 已经存在的
+    // 已经存在的 
     if (this._events.has(name)) {
       this._events.get(name).push(fn)
     }
@@ -54,11 +54,11 @@ class Bus {
 // 测试
 const bus = new Bus()
 
-// bus.emit('aaa', ['a'], true)
+bus.emit('aaa', ['a'], true)
 
-// bus.on('aaa', (a) => {
-//   console.log(a)
-//   console.log('aaa is call')
-// })
+bus.on('aaa', (a) => {
+  console.log(a)
+  console.log('aaa is call')
+})
 
-export default bus
+// export default bus

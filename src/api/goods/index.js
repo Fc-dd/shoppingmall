@@ -9,3 +9,6 @@ export const choicenessList = () => request('/choicenessList')
 
 // 热门商品
 export const hotGoods = () => request('/hotgoods')
+
+// 获取商品详情
+export const getSpu = (spuId) => request(`/goods?spuId=${spuId}`)

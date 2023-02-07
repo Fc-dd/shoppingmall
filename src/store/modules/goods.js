@@ -1,4 +1,4 @@
-import { goodsList, goodsListAll } from "@/api/goods";
+import { goodsList, goodsListAll, getSpu } from "@/api/goods";
 
 const actions = {
   async getGoodsList ({commit},data) {
@@ -13,6 +13,13 @@ const actions = {
     if (result.status === 200) {
       commit('TOTAL',result.data)
     } 
+  },
+
+  async getSpu ({ commit }, spuId) {
+    let result = await getSpu(spuId)
+    if (result.status === 200) {
+      commit('SPU',result.data)
+    } 
   }
 }
 
@@ -22,12 +29,17 @@ const mutations = {
   },
   TOTAL (state, data) {
     state.total = data
+  },
+  SPU (state, data) {
+    state.currentSpu = data
   }
 }
 
 const state = {
   goodsList: [],
-  total: []
+  total: [],
+  currentSpu: []
+
 }
 
 export default {

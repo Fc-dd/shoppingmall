@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import bus from './uitls/bus'
+import bus from './uitls/eventBus'
 
 // 注册全局组件
 import globalComponents from '@/uitls/globalComponents'

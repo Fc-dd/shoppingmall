@@ -29,8 +29,7 @@ export default {
   props: ['goods'],
   methods: {
     goDetail (spuId) {
-      console.log(spuId)
-      this.$router.push('detail')
+      this.$router.push({path: `detail/${spuId}`})
     },
     addCar () {
       sc

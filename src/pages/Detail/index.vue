@@ -49,19 +49,19 @@
           </ul>
           <div class="bigImg">
             <img
-              src="https://resource.smartisan.com/resource/6a665538755507c39db53db3c0e30d05.jpg?x-oss-process=image/resize,w_632/format,webp"
+              :src="spu.imgUrl"
               alt=""
             />
           </div>
         </div>
         <div class="item_information">
           <div class="item_title">
-            <h1>Smartisan 真无线蓝牙耳机（抖音文创限量款）</h1>
-            <h2>抖音文创限量款</h2>
+            <h1>{{ spu.title }}</h1>
+            <h2>{{ spu.introduce }}</h2>
             <div class="item_price">
               <span>
                 <em>￥</em>
-                <i>9999</i>
+                <i>{{ spu.price }}</i>
               </span>
             </div>
           </div>
@@ -175,17 +175,26 @@
 
 <script>
 export default {
+  name:'Detail',
   data() {
     return {
       footerTop: 0,
       ftrDom: null
     }
   },
+  created () {
+    this.getSpu()
+  },
   mounted () {
     window.addEventListener('scroll',this.handleScroll,true)
   },
   destroyed () {
     document.removeEventListener('scroll', this.handleScroll)
+  },
+  computed: {
+    spu () {
+      return this.$store.state.goods.currentSpu[0]
+    }
   },
   methods : {
     getTop (dom) {
@@ -198,6 +207,9 @@ export default {
       if (this.$refs.prd_fix) {
         scrollTop + window.innerHeight >= ftrTop ? this.$refs.prd_fix.classList.add('prd_fix') : this.$refs.prd_fix.classList.remove('prd_fix')
       }
+    },
+    getSpu () {
+      this.$store.dispatch('goods/getSpu', this.$route.params.spuId)
     }
   }
 }

@@ -47,7 +47,7 @@
         </ul>
       </div>
       <!-- 热门商品 -->
-      <div class="hot">
+      <div class="hot" v-if="hotGoodsList.length">
         <div class="mt30 w">
           <div class="title">
             <h2>热门商品</h2>
